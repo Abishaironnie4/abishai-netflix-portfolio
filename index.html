@@ -17,50 +17,55 @@
       <span class="brand-first">ABISHAI</span>
       <span class="brand-last">RONNIE</span>
     </div>
-    <nav class="nav-links">
+    <nav class="nav-links" id="navLinks">
       <a href="#home" class="active" data-nav="home">Home</a>
       <a href="#professional" data-nav="professional">Professional</a>
       <a href="#skills" data-nav="skills">Skills</a>
       <a href="#projects" data-nav="projects">Projects</a>
+      <a href="#certs" data-nav="certs">Certifications</a>
       <a href="#hireme" data-nav="hireme">Hire Me</a>
+      <a href="#resume" data-nav="resume">Resume</a>
     </nav>
   </header>
 
-  <!-- Hero / Home -->
-  <section id="home" class="hero">
-    <video class="hero-bg" autoplay muted loop playsinline>
-      <source src="https://cdn.coverr.co/videos/coverr-developer-coding-9273/1080p.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="chips">
-        <span class="chip">Salesforce Developer</span>
-        <span class="chip">Lightning • Apex • LWC</span>
-        <span class="chip">CI/CD • Azure DevOps • Copado</span>
+  <!-- HOME (its own wrapper so we can hide it) -->
+  <div id="homeWrapper">
+    <section id="home" class="hero">
+      <video class="hero-bg" autoplay muted loop playsinline>
+        <source src="https://cdn.coverr.co/videos/coverr-developer-coding-9273/1080p.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="chips">
+          <span class="chip">Salesforce Developer</span>
+          <span class="chip">Lightning • Apex • LWC</span>
+          <span class="chip">CI/CD • Azure DevOps • Copado</span>
+        </div>
+        <h1 class="typing" data-text="Binge-watch my career."></h1>
+        <p class="subtitle reveal">I craft secure, scalable Salesforce solutions across Sales, Service & Experience Cloud, with 90%+ test coverage and clean DevOps pipelines.</p>
+        <div class="cta reveal">
+          <a class="btn btn-primary" data-nav="projects">Play Projects</a>
+          <a href="mailto:abishaironnie.polepaka@valpo.edu" class="btn">Contact</a>
+          <a class="btn btn-ghost" data-nav="resume">Resume</a>
+        </div>
       </div>
-      <h1 class="typing" data-text="Binge-watch my career."></h1>
-      <p class="subtitle reveal">I craft secure, scalable Salesforce solutions across Sales, Service & Experience Cloud, with 90%+ test coverage and clean DevOps pipelines.</p>
-      <div class="cta reveal">
-        <a href="#projects" class="btn btn-primary" data-nav="projects">Play Projects</a>
-        <a href="mailto:abishairp@gmail.com" class="btn">Contact</a>
-        <a href="#resume" class="btn btn-ghost" data-nav="resume">Resume</a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Netflix Rows -->
+    <main class="container">
+      <section class="row" id="top-picks">
+        <h2 class="row-title">Today's Top Picks for Recruiter</h2>
+        <div class="row-scroller" id="topRow"></div>
+      </section>
+
+      <section class="row" id="continue">
+        <h2 class="row-title">Continue Watching for Recruiter</h2>
+        <div class="row-scroller" id="continueRow"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- INDIVIDUAL SCREENS (hidden until selected) -->
   <main class="container">
-    <section class="row" id="top-picks">
-      <h2 class="row-title">Today's Top Picks for Recruiter</h2>
-      <div class="row-scroller" id="topRow"></div>
-    </section>
-
-    <section class="row" id="continue">
-      <h2 class="row-title">Continue Watching for Recruiter</h2>
-      <div class="row-scroller" id="continueRow"></div>
-    </section>
-
-    <!-- Individual Screens (hidden until clicked) -->
     <section id="professional" class="screen timeline reveal hidden">
       <h2>Work Experience & Education Timeline</h2>
       <ol class="timeline-list" id="timeline"></ol>
@@ -76,6 +81,11 @@
       <div class="grid" id="projectsGrid"></div>
     </section>
 
+    <section id="certs" class="screen skills reveal hidden">
+      <h2>Certifications</h2>
+      <div class="grid" id="certsGrid"></div>
+    </section>
+
     <section id="hireme" class="screen contact reveal hidden">
       <h2>Hire Me</h2>
       <div class="card contact-card">
@@ -88,8 +98,8 @@
           </div>
         </div>
         <div class="links">
-          <a class="btn btn-primary" href="mailto:abishairp@gmail.com">abishairp@gmail.com</a>
-          <a class="btn" href="tel:+12192463789">+1 (219) 246-3789</a>
+          <a class="btn btn-primary" href="mailto:abishaironnie.polepaka@valpo.edu">abishaironnie.polepaka@valpo.edu</a>
+          <a class="btn" href="tel:+12192807420">+1 (219) 280-7420</a>
           <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/ronnie-par/">LinkedIn</a>
         </div>
         <p class="coffee">Or catch up over a coffee ☕</p>
@@ -106,7 +116,7 @@
     <p>© <span id="year"></span> Abishai Ronnie • Built with HTML/CSS/JS • Netflix-style UI</p>
   </footer>
 
-  <!-- External JS link -->
+  <!-- External JS -->
   <script src="app.js"></script>
 </body>
 </html>
