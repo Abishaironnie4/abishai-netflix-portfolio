@@ -7,7 +7,7 @@ const topPicks = [
 
 const continueWatching = [
   { id:'hireme', title:'Hire Me', img:'https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=1200&auto=format&fit=crop', tag:'Reach Out', type:'hireme'},
-  { id:'resume', title:'Resume Highlights', img:'https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1200&auto=format&fit=crop', tag:'One‑pager', type:'resume'}
+  { id:'resume', title:'Resume Highlights', img:'https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1200&auto=format&fit=crop', tag:'One-pager', type:'resume'}
 ];
 
 // Experience (two clients only) — show 3 bullets + View More
@@ -27,17 +27,17 @@ const timeline = [
     bullets:[
       'Designed 30+ LWCs for dynamic questionnaires with branching logic.',
       'Built screen/auto flows with Apex actions; case routing & queue logic.',
-      'Integrated with MS D365 via MuleSoft; real‑time dashboards.',
-      'Configured SLAs & entitlements; CTI/Omni‑Channel.',
+      'Integrated with MS D365 via MuleSoft; real-time dashboards.',
+      'Configured SLAs & entitlements; CTI/Omni-Channel.',
       'Managed deployments via Copado across SIT/QA/PROD.',
       'Performed 500k+ record migrations; training & documentation.'
     ]}
 ];
 
-// Skills — categories pulled from resume (full coverage)
+// Skills (full coverage from resume)
 const skills = [
   { title:'Salesforce Ecosystem', desc:'Sales Cloud, Service Cloud' },
-  { title:'Languages & Frameworks', desc:'Apex, LWC, Aura, Visualforce, JavaScript, SQL, Omni‑Channel, CTI' },
+  { title:'Languages & Frameworks', desc:'Apex, LWC, Aura, Visualforce, JavaScript, SQL, Omni-Channel, CTI' },
   { title:'Automation & Tools', desc:'Flows, Validation Rules, Approval Processes, Process Builder, Workbench' },
   { title:'Deployment & DevOps', desc:'Copado, Azure DevOps, Git, SFDX/CLI, Gearset, Change Sets, GitHub' },
   { title:'API & Integrations', desc:'REST, SOAP, Salesforce Connect, OAuth, LinkedIn Sales Navigator' },
@@ -50,23 +50,23 @@ const skills = [
   { title:'Frontend & Email Design', desc:'HTML, CSS, Responsive Email Templates' },
   { title:'CDP & Marketing Data', desc:'Salesforce CDP, Segment, APIs for marketing pipelines' },
   { title:'Lightning UX/UI & Experience Cloud', desc:'LWC, Aura, Custom Theme Layouts, CSS Frameworks' },
-  { title:'UX/UI & Front‑End', desc:'Responsive Web Design, HTML5, CSS3, Design‑to‑Code' },
-  { title:'Contact Center & UX', desc:'Omni‑Channel, Queues, Case Assignment, Lightning Page Templates, CTI Tools' }
+  { title:'UX/UI & Front-End', desc:'Responsive Web Design, HTML5, CSS3, Design-to-Code' },
+  { title:'Contact Center & UX', desc:'Omni-Channel, Queues, Case Assignment, Lightning Page Templates, CTI Tools' }
 ];
 
-// Projects — Capstone only + a skills showcase card, no action buttons
+// Projects
 const projects = [
   { title:'Family Express CRM (Capstone)', img:'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop',
     summary:'FastAPI + React microservices with AI article preview & PDF export; PostgreSQL; Docker; AWS Lambda (40% perf gain).'},
   { title:'Skills Showcase', img:'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop',
-    summary:'Hands‑on with Apex/LWC, CI/CD (Copado/Azure DevOps), REST/SOAP, Data Loader, Security & Sharing.'}
+    summary:'Hands-on with Apex/LWC, CI/CD (Copado/Azure DevOps), REST/SOAP, Data Loader, Security & Sharing.'}
 ];
 
 const resumeBullets = [
-  'End‑to‑end Salesforce delivery for public‑sector clients (Accenture).',
+  'End-to-end Salesforce delivery for public-sector clients (Accenture).',
   'Apex, LWC, Flows; secure data modeling & sharing; Experience Cloud.',
   '90%+ test coverage; UAT planning; SDLC best practices.',
-  'Integrations with MuleSoft, REST/SOAP; CTI/Omni‑Channel.',
+  'Integrations with MuleSoft, REST/SOAP; CTI/Omni-Channel.',
   'CI/CD with Copado & Azure DevOps; Git branching & rollbacks.',
   'Large data migrations with Data Loader & Excel VLOOKUP.'
 ];
@@ -103,7 +103,7 @@ function addTimeline(){
      <div class="stack">${t.stack}</div>
      <ul class="bullets">${shortBullets}</ul>
      ${more}
-   </li>`
+   </li>`;
   }).join('');
 }
 
