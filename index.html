@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abishai Ronnie — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="theme-color" content="#141414" />
+</head>
+<body>
+  <!-- Top Nav -->
+  <header class="nav">
+    <div class="brand">
+      <span class="brand-first">ABISHAI</span>
+      <span class="brand-last">RONNIE</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#professional">Professional</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#hireme">Hire Me</a>
+    </nav>
+  </header>
+
+  <!-- Hero / Home -->
+  <section id="home" class="hero">
+    <video class="hero-bg" autoplay muted loop playsinline>
+      <source src="https://cdn.coverr.co/videos/coverr-developer-coding-9273/1080p.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="chips">
+        <span class="chip">Salesforce Developer</span>
+        <span class="chip">Lightning • Apex • LWC</span>
+        <span class="chip">CI/CD • Azure DevOps • Copado</span>
+      </div>
+      <h1 class="typing" data-text="Binge‑watch my career."></h1>
+      <p class="subtitle reveal">I craft secure, scalable Salesforce solutions across Sales, Service & Experience Cloud, with 90%+ test coverage and clean DevOps pipelines.</p>
+      <div class="cta reveal">
+        <a href="#projects" class="btn btn-primary">Play Projects</a>
+        <a href="mailto:abishairp@gmail.com" class="btn">Contact</a>
+        <a href="#resume" class="btn btn-ghost">Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top Picks / Rows -->
+  <main class="container">
+    <section class="row" id="top-picks">
+      <h2 class="row-title">Today's Top Picks for Recruiter</h2>
+      <div class="row-scroller" id="topRow"></div>
+    </section>
+
+    <section class="row" id="continue">
+      <h2 class="row-title">Continue Watching for Recruiter</h2>
+      <div class="row-scroller" id="continueRow"></div>
+    </section>
+
+    <section id="professional" class="timeline reveal">
+      <h2>Work Experience & Education Timeline</h2>
+      <ol class="timeline-list" id="timeline"></ol>
+    </section>
+
+    <section id="skills" class="skills reveal">
+      <h2>Backend, Cloud & DevOps</h2>
+      <div class="grid" id="skillsGrid"></div>
+    </section>
+
+    <section id="projects" class="projects reveal">
+      <h2>Projects</h2>
+      <div class="grid" id="projectsGrid"></div>
+    </section>
+
+    <section id="recent" class="row reveal">
+      <h2 class="row-title">Recently Viewed</h2>
+      <div class="row-scroller" id="recentRow"></div>
+    </section>
+
+    <section id="hireme" class="contact reveal">
+      <h2>Hire Me</h2>
+      <div class="card contact-card">
+        <div class="me">
+          <img src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Abishai"/>
+          <div>
+            <h3>Abishai Ronnie Polepaka</h3>
+            <p>Salesforce Developer • 3+ years</p>
+            <p>Harrisburg, PA (Relocate/Onsite ready)</p>
+          </div>
+        </div>
+        <div class="links">
+          <a class="btn btn-primary" href="mailto:abishaironnie.polepaka@valpo.edu">abishaironnie.polepaka@valpo.edu</a>
+          <a class="btn" href="tel:+12192463789">+1 (219) 280-7420</a>
+          <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/ronnie-par/">LinkedIn</a>
+        </div>
+        <p class="coffee">Or catch up over a coffee ☕</p>
+      </div>
+    </section>
+
+    <section id="resume" class="resume reveal">
+      <h2>One‑Page Resume</h2>
+      <ul class="bullets" id="resumeBullets"></ul>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="close" id="closeModal">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Abishai Ronnie • Built with HTML/CSS/JS • Netflix‑style UI</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
