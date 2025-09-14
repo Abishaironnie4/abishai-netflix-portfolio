@@ -23,12 +23,13 @@
       <a href="#skills" data-nav="skills">Skills</a>
       <a href="#projects" data-nav="projects">Projects</a>
       <a href="#certs" data-nav="certs">Certifications</a>
+      <a href="#education" data-nav="education">Education</a>
       <a href="#hireme" data-nav="hireme">Hire Me</a>
       <a href="#resume" data-nav="resume">Resume</a>
     </nav>
   </header>
 
-  <!-- HOME (its own wrapper so we can hide it) -->
+  <!-- HOME wrapper (its own screen) -->
   <div id="homeWrapper">
     <section id="home" class="hero">
       <video class="hero-bg" autoplay muted loop playsinline>
@@ -64,7 +65,7 @@
     </main>
   </div>
 
-  <!-- INDIVIDUAL SCREENS (hidden until selected) -->
+  <!-- INDIVIDUAL SCREENS -->
   <main class="container">
     <section id="professional" class="screen timeline reveal hidden">
       <h2>Work Experience & Education Timeline</h2>
@@ -84,6 +85,11 @@
     <section id="certs" class="screen skills reveal hidden">
       <h2>Certifications</h2>
       <div class="grid" id="certsGrid"></div>
+    </section>
+
+    <section id="education" class="screen skills reveal hidden">
+      <h2>Education</h2>
+      <div class="grid" id="eduGrid"></div>
     </section>
 
     <section id="hireme" class="screen contact reveal hidden">
@@ -116,7 +122,6 @@
     <p>© <span id="year"></span> Abishai Ronnie • Built with HTML/CSS/JS • Netflix-style UI</p>
   </footer>
 
-  <!-- External JS -->
   <script src="app.js"></script>
 </body>
 </html>

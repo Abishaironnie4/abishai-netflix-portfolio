@@ -1,4 +1,4 @@
-/* ============ Data (from resume) ============ */
+/* ============ Data ============ */
 const topPicks = [
   { id:'skills', title:'Skills', img:'https://images.unsplash.com/photo-1555949963-aa79dcee981d?q=80&w=1200&auto=format&fit=crop', tag:'Explore', type:'skills'},
   { id:'projects', title:'Projects', img:'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop', tag:'Capstone', type:'projects'},
@@ -7,10 +7,10 @@ const topPicks = [
 
 const continueWatching = [
   { id:'certs', title:'Certifications', img:'https://images.unsplash.com/photo-1497493292307-31c376b6e479?q=80&w=1200&auto=format&fit=crop', tag:'Creds', type:'certs'},
-  { id:'hireme', title:'Hire Me', img:'https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=1200&auto=format&fit=crop', tag:'Reach Out', type:'hireme'}
+  { id:'education', title:'Education', img:'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop', tag:'Degrees', type:'education'}
 ];
 
-/* ---------- Experience (exact text you sent) ---------- */
+/* ---------- Experience (full bullets) ---------- */
 const timeline = [
   {
     role:'Application Development Analyst — Accenture',
@@ -52,16 +52,24 @@ const timeline = [
   }
 ];
 
-/* ---------- Skills (grouped) ---------- */
+/* ---------- Skills (exact categories + items you sent) ---------- */
 const skills = [
-  { title:'Salesforce', desc:'Sales Cloud, Service Cloud, Experience Cloud' },
-  { title:'Languages/Frameworks', desc:'Apex, LWC, Aura, Visualforce, JavaScript, SOQL/SQL' },
-  { title:'Automation', desc:'Flows, Validation Rules, Approvals, Process Builder, Workbench' },
-  { title:'DevOps', desc:'Azure DevOps (YAML), Copado, Git/GitHub, SFDX/CLI, Gearset, Change Sets' },
-  { title:'Integrations', desc:'REST & SOAP, OAuth, Salesforce Connect, MuleSoft, CTI/Omni-Channel' },
-  { title:'Security', desc:'MFA, Profiles, Permission Sets, Sharing Rules, Platform Encryption' },
-  { title:'Data & Analytics', desc:'Data Loader, Excel (VLOOKUP), Reports/Dashboards' },
-  { title:'Frontend', desc:'HTML, CSS, Responsive Email Templates, Lightning UX' }
+  { title:'Salesforce Ecosystem', desc:'Sales Cloud, Service Cloud' },
+  { title:'Languages & Frameworks', desc:'Apex, Lightning Web Components (LWC), Aura, Visualforce, JavaScript, SQL, Omni-Channel, CTI Integration' },
+  { title:'Automation & Tools', desc:'Flows, Validation Rules, Approval Processes, Process Builder, Workbench' },
+  { title:'Deployment & DevOps', desc:'Copado, Azure DevOps, Git, SFDX, Salesforce CLI, Gearset, Change Sets, GitHub' },
+  { title:'API & Integrations', desc:'REST APIs, SOAP APIs, Salesforce Connect, OAuth, LinkedIn Sales Navigator' },
+  { title:'Security & Compliance', desc:'MFA, Platform Encryption, GDPR, HIPAA' },
+  { title:'Project Management', desc:'Agile (Scrum & Kanban), Jira, ServiceNow' },
+  { title:'Data & Analysis Tools', desc:'Salesforce Data Loader, Excel (Advanced), Tableau' },
+  { title:'CRM Architecture', desc:'Permission Sets, Sharing Rules, Profile Management' },
+  { title:'Document Automation', desc:'Global Relay (Chatter archiving)' },
+  { title:'Testing & Coverage', desc:'Apex Unit Testing (90%+), Batch Apex, Triggers, HTML Email Templates, Selenium' },
+  { title:'Frontend & Email Design', desc:'HTML, CSS, Responsive Email Templates' },
+  { title:'CDP & Integration Tools', desc:'Salesforce CDP, Segment, APIs for marketing data pipelines' },
+  { title:'Salesforce Lightning UX/UI & Experience Cloud', desc:'Lightning Web Components (LWC), Aura Components, Custom Theme Layouts, CSS Frameworks' },
+  { title:'UX/UI & Front-End Development', desc:'Responsive Web Design, HTML5, CSS3, Design-to-Code Implementation' },
+  { title:'Contact Center & User Experience', desc:'Omni-Channel Routing, Queues, Case Assignment Rules, Lightning Page Templates, CTI Tools' }
 ];
 
 /* ---------- Certifications (separate tab) ---------- */
@@ -69,6 +77,12 @@ const certs = [
   { title:'Salesforce Certified Administrator', desc:'Active' },
   { title:'Salesforce Platform App Builder', desc:'Active' },
   { title:'Salesforce Platform Developer I', desc:'Active' }
+];
+
+/* ---------- Education (separate tab) ---------- */
+const education = [
+  { title:'M.S. in Information Technology', desc:'Valparaiso University, IN • GPA ~3.6 • 2024' },
+  { title:'B.E. in Electronics & Communications Engineering', desc:'Vasavi College of Engineering • 2016–2020' }
 ];
 
 /* ---------- Projects ---------- */
@@ -95,14 +109,12 @@ const $$ = (sel, el=document)=>Array.from(el.querySelectorAll(sel));
 function cardTemplate(item){
   return `<article class="card" data-id="${item.id}" data-type="${item.type||'card'}">
     <div class="thumb"><img alt="${item.title}" src="${item.img}"/></div>
-    <div class="meta">
-      <span class="tag">${item.tag||'Open'}</span>
-      <h4>${item.title}</h4>
-    </div>
+    <div class="meta"><span class="tag">${item.tag||'Open'}</span><h4>${item.title}</h4></div>
   </article>`;
 }
 function addCards(rowId, items){ const row = document.getElementById(rowId); row.innerHTML = items.map(cardTemplate).join(''); }
 
+/* ---------- Renderers ---------- */
 function addTimeline(){
   const list = $('#timeline');
   list.innerHTML = timeline.map(t=>{
@@ -118,60 +130,38 @@ function addTimeline(){
        ${more}
      </li>`;
   }).join('');
-
-  // Toggle summary text View more/Hide
-  $$('.more').forEach(d=>{
-    d.addEventListener('toggle', ()=>{ d.querySelector('summary').textContent = d.open ? 'Hide' : 'View more'; });
-  });
+  // Toggle summary label
+  $$('.more').forEach(d=> d.addEventListener('toggle', ()=>{ d.querySelector('summary').textContent = d.open ? 'Hide' : 'View more'; }));
 }
-
-function addSkills(){ $('#skillsGrid').innerHTML = skills.map(s=>`
-   <div class="skill"><h4>${s.title}</h4><p>${s.desc}</p></div>`).join(''); }
-
-function addProjects(){ $('#projectsGrid').innerHTML = projects.map(p=>`
-   <div class="project">
-     <div class="banner"><img alt="${p.title}" src="${p.img}"/></div>
-     <h4>${p.title}</h4><p>${p.summary}</p>
-   </div>`).join(''); }
-
-function addCerts(){ $('#certsGrid').innerHTML = certs.map(c=>`
-   <div class="skill"><h4>${c.title}</h4><p>${c.desc}</p></div>`).join(''); }
-
+function addSkills(){ $('#skillsGrid').innerHTML = skills.map(s=>`<div class="skill"><h4>${s.title}</h4><p>${s.desc}</p></div>`).join(''); }
+function addProjects(){ $('#projectsGrid').innerHTML = projects.map(p=>`<div class="project"><div class="banner"><img alt="${p.title}" src="${p.img}"/></div><h4>${p.title}</h4><p>${p.summary}</p></div>`).join(''); }
+function addCerts(){ $('#certsGrid').innerHTML = certs.map(c=>`<div class="skill"><h4>${c.title}</h4><p>${c.desc}</p></div>`).join(''); }
+function addEdu(){ $('#eduGrid').innerHTML = education.map(e=>`<div class="skill"><h4>${e.title}</h4><p>${e.desc}</p></div>`).join(''); }
 function addResume(){ $('#resumeBullets').innerHTML = resumeBullets.map(b=>`<li>${b}</li>`).join(''); }
 
-/* ============ Typing Effect & Reveal ============ */
-function typeLine(el){
-  const text = el.dataset.text || el.textContent; el.textContent = '';
-  let i=0; const tick = ()=>{ el.textContent = text.slice(0, i++); if(i <= text.length) requestAnimationFrame(tick); };
-  requestAnimationFrame(tick);
-}
-const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} }); },{threshold:.12});
+/* ---------- Typing + Reveal ---------- */
+function typeLine(el){ const text = el.dataset.text || el.textContent; el.textContent = ''; let i=0; const tick=()=>{ el.textContent = text.slice(0,i++); if(i<=text.length) requestAnimationFrame(tick); }; requestAnimationFrame(tick); }
+const io = new IntersectionObserver((ents)=>{ ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} }); },{threshold:.12});
 
-/* ============ Router (show ONE screen at a time) ============ */
-function setActive(linkId){
-  $$('#navLinks a').forEach(a=>a.classList.toggle('active', a.dataset.nav===linkId));
-}
+/* ---------- Router (one screen at a time) ---------- */
+function setActive(linkId){ $$('#navLinks a').forEach(a=>a.classList.toggle('active', a.dataset.nav===linkId)); }
 function showScreen(id){
   const isHome = (id==='home' || !id);
-  // Hide/Show the home wrapper
   $('#homeWrapper').classList.toggle('hidden', !isHome);
-  // Hide all other screens
   $$('.screen').forEach(s=>s.classList.add('hidden'));
   if(!isHome && document.getElementById(id)){
     document.getElementById(id).classList.remove('hidden');
     document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
-  } else {
-    window.scrollTo({top:0, behavior:'smooth'});
-  }
+  } else { window.scrollTo({top:0, behavior:'smooth'}); }
   setActive(isHome ? 'home' : id);
   history.replaceState(null, '', `#${id||'home'}`);
 }
 
-/* ============ Init ============ */
+/* ---------- Init ---------- */
 function init(){
   addCards('topRow', topPicks);
   addCards('continueRow', continueWatching);
-  addTimeline(); addSkills(); addProjects(); addCerts(); addResume();
+  addTimeline(); addSkills(); addProjects(); addCerts(); addEdu(); addResume();
   typeLine($('.typing'));
   $$('.reveal').forEach(el=> io.observe(el));
   $('#year').textContent = new Date().getFullYear();
@@ -184,7 +174,7 @@ function init(){
     if(card){ const target = card.dataset.id || card.dataset.type; if(target){ showScreen(target); } }
   });
 
-  // Deep link support (hash)
+  // Deep link (hash)
   const initial = (location.hash||'').replace('#','') || 'home';
   showScreen(initial);
 }
