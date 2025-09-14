@@ -1,123 +1,173 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abishai Ronnie — Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-  <meta name="theme-color" content="#141414" />
-</head>
-<body>
-  <!-- Top Nav -->
-  <header class="nav">
-    <div class="brand">
-      <span class="brand-first">ABISHAI</span>
-      <span class="brand-last">RONNIE</span>
+/* ============ Data (from resume) ============ */
+const topPicks = [
+  { id:'skills', title:'Skills', img:'https://images.unsplash.com/photo-1555949963-aa79dcee981d?q=80&w=1200&auto=format&fit=crop', tag:'Explore', type:'skills'},
+  { id:'projects', title:'Projects', img:'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop', tag:'Capstone', type:'projects'},
+  { id:'professional', title:'Experience', img:'https://images.unsplash.com/photo-1454165205744-3b78555e5572?q=80&w=1200&auto=format&fit=crop', tag:'2 State Clients', type:'professional'}
+];
+
+const continueWatching = [
+  { id:'hireme', title:'Hire Me', img:'https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=1200&auto=format&fit=crop', tag:'Reach Out', type:'hireme'},
+  { id:'resume', title:'Resume Highlights', img:'https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1200&auto=format&fit=crop', tag:'One‑pager', type:'resume'}
+];
+
+// Experience (two clients only) — show 3 bullets + View More
+const timeline = [
+  { role:'Application Development Analyst – Accenture', place:'State of Michigan — MLCC', when:'Jul 2022 – Jun 2023',
+    stack:'Lightning, Experience Cloud, 30+ LWCs, REST, Azure DevOps, Data Loader',
+    bullets:[
+      'Migrated Classic to Lightning, remediating 100+ Apex/Aura/VF components.',
+      'Built branded Experience Cloud portals with custom themes.',
+      'Automated CI/CD with Azure DevOps YAML (validate & deploy).',
+      'Developed 30+ LWCs for permit/license workflows.',
+      'Built REST services, migrated 800k+ records with integrity checks.',
+      'Created Apex Triggers/Batch/Queueable for task automation and SLAs.'
+    ]},
+  { role:'Application Development Associate – Accenture', place:'State of Massachusetts — MA Health Connector', when:'Feb 2020 – Jul 2022',
+    stack:'LWC (30+), Flows, Apex, MuleSoft, Copado, Entitlements/Milestones',
+    bullets:[
+      'Designed 30+ LWCs for dynamic questionnaires with branching logic.',
+      'Built screen/auto flows with Apex actions; case routing & queue logic.',
+      'Integrated with MS D365 via MuleSoft; real‑time dashboards.',
+      'Configured SLAs & entitlements; CTI/Omni‑Channel.',
+      'Managed deployments via Copado across SIT/QA/PROD.',
+      'Performed 500k+ record migrations; training & documentation.'
+    ]}
+];
+
+// Skills — categories pulled from resume (full coverage)
+const skills = [
+  { title:'Salesforce Ecosystem', desc:'Sales Cloud, Service Cloud' },
+  { title:'Languages & Frameworks', desc:'Apex, LWC, Aura, Visualforce, JavaScript, SQL, Omni‑Channel, CTI' },
+  { title:'Automation & Tools', desc:'Flows, Validation Rules, Approval Processes, Process Builder, Workbench' },
+  { title:'Deployment & DevOps', desc:'Copado, Azure DevOps, Git, SFDX/CLI, Gearset, Change Sets, GitHub' },
+  { title:'API & Integrations', desc:'REST, SOAP, Salesforce Connect, OAuth, LinkedIn Sales Navigator' },
+  { title:'Security & Compliance', desc:'MFA, Platform Encryption, GDPR, HIPAA' },
+  { title:'Project Management', desc:'Agile (Scrum/Kanban), Jira, ServiceNow' },
+  { title:'Data & Analysis', desc:'Salesforce Data Loader, Excel (Advanced), Tableau' },
+  { title:'CRM Architecture', desc:'Permission Sets, Sharing Rules, Profile Management' },
+  { title:'Document Automation', desc:'Global Relay (Chatter archiving)' },
+  { title:'Testing & Coverage', desc:'Apex Unit Testing (90%+), Batch Apex, Triggers, HTML Email Templates, Selenium' },
+  { title:'Frontend & Email Design', desc:'HTML, CSS, Responsive Email Templates' },
+  { title:'CDP & Marketing Data', desc:'Salesforce CDP, Segment, APIs for marketing pipelines' },
+  { title:'Lightning UX/UI & Experience Cloud', desc:'LWC, Aura, Custom Theme Layouts, CSS Frameworks' },
+  { title:'UX/UI & Front‑End', desc:'Responsive Web Design, HTML5, CSS3, Design‑to‑Code' },
+  { title:'Contact Center & UX', desc:'Omni‑Channel, Queues, Case Assignment, Lightning Page Templates, CTI Tools' }
+];
+
+// Projects — Capstone only + a skills showcase card, no action buttons
+const projects = [
+  { title:'Family Express CRM (Capstone)', img:'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop',
+    summary:'FastAPI + React microservices with AI article preview & PDF export; PostgreSQL; Docker; AWS Lambda (40% perf gain).'},
+  { title:'Skills Showcase', img:'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop',
+    summary:'Hands‑on with Apex/LWC, CI/CD (Copado/Azure DevOps), REST/SOAP, Data Loader, Security & Sharing.'}
+];
+
+const resumeBullets = [
+  'End‑to‑end Salesforce delivery for public‑sector clients (Accenture).',
+  'Apex, LWC, Flows; secure data modeling & sharing; Experience Cloud.',
+  '90%+ test coverage; UAT planning; SDLC best practices.',
+  'Integrations with MuleSoft, REST/SOAP; CTI/Omni‑Channel.',
+  'CI/CD with Copado & Azure DevOps; Git branching & rollbacks.',
+  'Large data migrations with Data Loader & Excel VLOOKUP.'
+];
+
+/* ============ Helpers ============ */
+const $ = (sel, el=document)=>el.querySelector(sel);
+const $$ = (sel, el=document)=>Array.from(el.querySelectorAll(sel));
+
+function cardTemplate(item){
+  return `<article class="card" data-id="${item.id}" data-type="${item.type||'card'}">
+    <div class="thumb"><img alt="${item.title}" src="${item.img}"/></div>
+    <div class="meta">
+      <span class="tag">${item.tag||'Open'}</span>
+      <h4>${item.title}</h4>
     </div>
-    <nav class="nav-links">
-      <a href="#home" class="active">Home</a>
-      <a href="#professional">Professional</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#hireme">Hire Me</a>
-    </nav>
-  </header>
+  </article>`;
+}
 
-  <!-- Hero / Home -->
-  <section id="home" class="hero">
-    <video class="hero-bg" autoplay muted loop playsinline>
-      <source src="https://cdn.coverr.co/videos/coverr-developer-coding-9273/1080p.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="chips">
-        <span class="chip">Salesforce Developer</span>
-        <span class="chip">Lightning • Apex • LWC</span>
-        <span class="chip">CI/CD • Azure DevOps • Copado</span>
-      </div>
-      <h1 class="typing" data-text="Binge‑watch my career."></h1>
-      <p class="subtitle reveal">I craft secure, scalable Salesforce solutions across Sales, Service & Experience Cloud, with 90%+ test coverage and clean DevOps pipelines.</p>
-      <div class="cta reveal">
-        <a href="#projects" class="btn btn-primary">Play Projects</a>
-        <a href="mailto:abishairp@gmail.com" class="btn">Contact</a>
-        <a href="#resume" class="btn btn-ghost">Resume</a>
-      </div>
-    </div>
-  </section>
+function addCards(rowId, items){
+  const row = document.getElementById(rowId);
+  row.innerHTML = items.map(cardTemplate).join('');
+}
 
-  <!-- Top Picks / Rows -->
-  <main class="container">
-    <section class="row" id="top-picks">
-      <h2 class="row-title">Today's Top Picks for Recruiter</h2>
-      <div class="row-scroller" id="topRow"></div>
-    </section>
+function addTimeline(){
+  const list = $('#timeline');
+  list.innerHTML = timeline.map(t=>{
+    const shortBullets = t.bullets.slice(0,3).map(b=>`<li>${b}</li>`).join('');
+    const rest = t.bullets.slice(3).map(b=>`<li>${b}</li>`).join('');
+    const more = rest ? `<details><summary>View more</summary><ul class="bullets">${rest}</ul></details>` : '';
+    return `
+   <li class="timeline-item">
+     <h3>${t.role}</h3>
+     <div class="stack">${t.place} • ${t.when}</div>
+     <div class="stack">${t.stack}</div>
+     <ul class="bullets">${shortBullets}</ul>
+     ${more}
+   </li>`
+  }).join('');
+}
 
-    <section class="row" id="continue">
-      <h2 class="row-title">Continue Watching for Recruiter</h2>
-      <div class="row-scroller" id="continueRow"></div>
-    </section>
+function addSkills(){
+  const grid = $('#skillsGrid');
+  grid.innerHTML = skills.map(s=>`
+   <div class="skill">
+     <h4>${s.title}</h4>
+     <p>${s.desc}</p>
+   </div>`).join('');
+}
 
-    <section id="professional" class="timeline reveal">
-      <h2>Work Experience & Education Timeline</h2>
-      <ol class="timeline-list" id="timeline"></ol>
-    </section>
+function addProjects(){
+  const grid = $('#projectsGrid');
+  grid.innerHTML = projects.map(p=>`
+   <div class="project">
+     <div class="banner"><img alt="${p.title}" src="${p.img}"/></div>
+     <h4>${p.title}</h4>
+     <p>${p.summary}</p>
+   </div>`).join('');
+}
 
-    <section id="skills" class="skills reveal">
-      <h2>Backend, Cloud & DevOps</h2>
-      <div class="grid" id="skillsGrid"></div>
-    </section>
+function addResume(){
+  $('#resumeBullets').innerHTML = resumeBullets.map(b=>`<li>${b}</li>`).join('');
+}
 
-    <section id="projects" class="projects reveal">
-      <h2>Projects</h2>
-      <div class="grid" id="projectsGrid"></div>
-    </section>
+/* ============ Typing Effect & Reveal ============ */
+function typeLine(el){
+  const text = el.dataset.text || el.textContent; el.textContent = '';
+  let i=0; const tick = ()=>{ el.textContent = text.slice(0, i++); if(i <= text.length) requestAnimationFrame(tick); };
+  requestAnimationFrame(tick);
+}
 
-    <section id="recent" class="row reveal">
-      <h2 class="row-title">Recently Viewed</h2>
-      <div class="row-scroller" id="recentRow"></div>
-    </section>
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
+},{threshold:.12});
 
-    <section id="hireme" class="contact reveal">
-      <h2>Hire Me</h2>
-      <div class="card contact-card">
-        <div class="me">
-          <img src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Abishai"/>
-          <div>
-            <h3>Abishai Ronnie Polepaka</h3>
-            <p>Salesforce Developer • 3+ years</p>
-            <p>Harrisburg, PA (Relocate/Onsite ready)</p>
-          </div>
-        </div>
-        <div class="links">
-          <a class="btn btn-primary" href="mailto:abishaironnie.polepaka@valpo.edu">abishaironnie.polepaka@valpo.edu</a>
-          <a class="btn" href="tel:+12192463789">+1 (219) 280-7420</a>
-          <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/ronnie-par/">LinkedIn</a>
-        </div>
-        <p class="coffee">Or catch up over a coffee ☕</p>
-      </div>
-    </section>
+/* ============ Screen Router ============ */
+function showScreen(id){
+  $$('.screen').forEach(s=>s.classList.add('hidden'));
+  if(id && document.getElementById(id)){
+    document.getElementById(id).classList.remove('hidden');
+    document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
 
-    <section id="resume" class="resume reveal">
-      <h2>One‑Page Resume</h2>
-      <ul class="bullets" id="resumeBullets"></ul>
-    </section>
-  </main>
+/* ============ Init ============ */
+function init(){
+  addCards('topRow', topPicks);
+  addCards('continueRow', continueWatching);
+  addTimeline(); addSkills(); addProjects(); addResume();
+  typeLine($('.typing'));
+  $$('.reveal').forEach(el=> io.observe(el));
+  $('#year').textContent = new Date().getFullYear();
 
-  <!-- Modal -->
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <button class="close" id="closeModal">×</button>
-      <div id="modalBody"></div>
-    </div>
-  </div>
+  document.body.addEventListener('click', (e)=>{
+    if(e.target.matches('[data-nav]')){
+      const id = e.target.getAttribute('data-nav');
+      if(id==='home'){ window.scrollTo({top:0, behavior:'smooth'}); return; }
+      showScreen(id); e.preventDefault();
+    }
+    const card = e.target.closest('.card');
+    if(card){ const target = card.dataset.id || card.dataset.type; if(target){ showScreen(target); } }
+  });
+}
 
-  <footer class="footer">
-    <p>© <span id="year"></span> Abishai Ronnie • Built with HTML/CSS/JS • Netflix‑style UI</p>
-  </footer>
-
-  <script src="app.js"></script>
-</body>
-</html>
+init();
